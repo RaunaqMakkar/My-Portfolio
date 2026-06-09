@@ -5,7 +5,7 @@ export const personalInfo = {
   lastName: "Makkar",
   title: "AI Engineer",
   description:
-    "I build intelligent AI-powered systems and modern web experiences focused on performance, innovation, and impactful user experiences as an AI Engineer.",
+    "I build intelligent AI systems and modern web applications that solve real-world problems through innovation, performance, and thoughtful design.",
   email: "raunaqmakkarpc@gmail.com",
   linkedin: "https://www.linkedin.com/in/raunaq-makkar",
   github: "https://github.com/RaunaqMakkar",
@@ -44,7 +44,7 @@ export const skillsCategories = [
   {
     title: "Databases",
     icon: "database",
-    skills: ["MongoDB", "SQL", "XAMPP"],
+    skills: ["MongoDB", "SQL", "MySQL"],
   },
   {
     title: "Programming Languages",
@@ -54,7 +54,7 @@ export const skillsCategories = [
   {
     title: "Developer Tools & Platforms",
     icon: "construction",
-    skills: ["Git", "GitHub", "VS Code", "Postman", "Google Colab", "Wordpress"],
+    skills: ["Git", "GitHub", "Vercel", "Postman", "Google Colab", "Wordpress", "XAMPP"],
   },
 ];
 
