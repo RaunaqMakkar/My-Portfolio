@@ -69,10 +69,10 @@ export const skillsData = [
 export const projectsData = [
   {
     id: 1,
-    category: "Computer Vision • AI",
+    category: "COMPUTER VISION • AI",
     title: "RoadNetAI",
     description:
-      "An AI-powered road monitoring platform that detects potholes, road cracks, manholes, and open manholes using YOLOv8 segmentation. The system transforms detections into actionable maintenance insights for smarter infrastructure management.",
+      "AI-powered road infrastructure monitoring system that detects potholes, cracks, manholes, and open manholes using YOLOv8 segmentation. Converts detections into actionable maintenance insights through computer vision and automated analysis.",
     tags: ["Python", "YOLOv8", "OpenCV", "FastAPI"],
     featured: true,
     link: null,
@@ -86,10 +86,10 @@ export const projectsData = [
   },
   {
     id: 2,
-    category: "AI Platform • Web Development",
+    category: "AI PLATFORM • WEB DEVELOPMENT",
     title: "Career Edge",
     description:
-      "An AI-driven career guidance platform that connects students with mentors through intelligent matchmaking, appointment scheduling, and AI-powered career assistance. Built as a complete ecosystem to bridge the gap between students and industry professionals.",
+      "AI-driven career guidance platform that connects students with mentors through intelligent matchmaking and AI-powered career assistance. Features mentorship discovery, secure networking, and conversational AI support.",
     tags: ["React.js", "Node.js", "MongoDB", "Flask", "Gemini AI"],
     featured: true,
     link: "https://career-edge-frontend.vercel.app/",
@@ -104,11 +104,11 @@ export const projectsData = [
   },
   {
     id: 9,
-    category: "Web Development • NGO",
+    category: "FREELANCE • WEB DEVELOPMENT",
     title: "Youth Network Foundation Website",
     description:
-      "Developed and optimized the official NGO website for Youth Network Foundation (YNF). Enhanced content accessibility, optimized page load speeds, and improved responsive layouts to drive volunteer recruitment and donor outreach campaigns.",
-    tags: ["Wordpress", "Gutenverse", "Yoast SEO", "Hostinger"],
+      "Enhanced and optimized the official Youth Network Foundation website, improving responsiveness, content accessibility, user experience, and overall digital engagement.",
+    tags: ["WordPress", "Gutenverse", "Yoast SEO", "Hostinger"],
     featured: true,
     link: "https://youthnetworkfoundation.org/",
     github: "null",
@@ -122,10 +122,10 @@ export const projectsData = [
   },
   {
     id: 3,
-    category: "Security AI • Computer Vision",
+    category: "SECURITY AI • COMPUTER VISION",
     title: "AI Surveillance System",
     description:
-      "A real-time threat detection system that combines weapon detection and violence recognition using YOLO and ConvLSTM models to provide intelligent surveillance and automated threat alerts.",
+      "Real-time AI surveillance platform that combines weapon detection and violence recognition using YOLO and ConvLSTM models to generate intelligent threat alerts and visual evidence.",
     tags: ["Python", "YOLO", "ConvLSTM", "OpenCV"],
     featured: true,
     link: null,
@@ -136,10 +136,10 @@ export const projectsData = [
   },
   {
     id: 5,
-    category: "Deep Learning",
+    category: "DEEP LEARNING",
     title: "Image Classification using CNN",
     description:
-      "A CNN-based image classification model trained on the CIFAR-10 dataset using TensorFlow and Keras. The system predicts image categories and provides confidence scores for each prediction.",
+      "CNN-based image classification model trained on the CIFAR-10 dataset using TensorFlow and Keras. Predicts object categories with confidence scoring and deep learning inference.",
     tags: ["Python", "TensorFlow", "CNN", "Keras"],
     featured: false,
     link: null,
@@ -152,11 +152,11 @@ export const projectsData = [
   },
   {
     id: 7,
-    category: "C++ Development",
+    category: "C++ DEVELOPMENT",
     title: "Tetris Game",
     description:
-      "A professional implementation of the classic Tetris game built in C++17 featuring collision detection, piece rotation mechanics, score tracking, and optimized gameplay systems.",
-    tags: ["C++", "OOP"],
+      "Modern C++ implementation of the classic Tetris game featuring collision detection, piece rotation, scoring mechanics, and optimized gameplay logic.",
+    tags: ["C++", "OOP", "Game Development"],
     featured: false,
     link: null,
     github: "https://github.com/RaunaqMakkar/Tetris_Game",
@@ -168,10 +168,10 @@ export const projectsData = [
   },
   {
     id: 8,
-    category: "Frontend Development",
+    category: "FRONTEND DEVELOPMENT",
     title: "Amazon Clone",
     description:
-      "A responsive Amazon homepage clone built using HTML, CSS, and JavaScript, focused on recreating modern UI layouts and responsive web design principles.",
+      "Responsive Amazon homepage clone built using HTML, CSS, and JavaScript, focused on recreating modern e-commerce layouts and responsive user interface design.",
     tags: ["HTML", "CSS", "JavaScript"],
     featured: false,
     link: null,

@@ -16,8 +16,8 @@ function TimelineItem({ item, index }) {
       {/* Circle Dot on the line */}
       <div
         className={`absolute top-[6px] w-3.5 h-3.5 rounded-full border-2 bg-surface z-10 transition-all duration-300 ${item.highlight
-            ? "border-primary bg-primary"
-            : "border-primary/50"
+          ? "border-primary bg-primary"
+          : "border-primary/50"
           }`}
         style={{ left: "calc(var(--tl-axis) - var(--tl-pad) - 0.4375rem)" }}
       />
@@ -41,8 +41,8 @@ function TimelineCard({ item }) {
   return (
     <div
       className={`group rounded-2xl p-6 md:p-8 transition-all duration-400 ease-out cursor-default ${item.highlight
-          ? "glass-card border-primary/30 shadow-[0_0_20px_rgba(166,124,26,0.06)]"
-          : "glass-card hover:border-outline/60 hover:scale-[1.01] hover:shadow-[0_10px_30px_rgba(42,27,16,0.06)]"
+        ? "glass-card border-primary/30 shadow-[0_0_20px_rgba(166,124,26,0.06)]"
+        : "glass-card hover:border-outline/60 hover:scale-[1.01] hover:shadow-[0_10px_30px_rgba(42,27,16,0.06)]"
         }`}
     >
       {hasMilestones ? (

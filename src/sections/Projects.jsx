@@ -141,14 +141,14 @@ function ProjectCard({ project, index }) {
   return (
     <div
       ref={cardRef}
-      className={`transition-all duration-700 ${isVisible
+      className={`h-full transition-all duration-700 ${isVisible
         ? "animate-fadeInUp opacity-100 translate-y-0"
         : "opacity-0 translate-y-[40px]"
         }`}
       style={{ animationDelay: `${index * 150}ms` }}
     >
       <div
-        className="group relative overflow-hidden rounded-[2rem] glass-card cursor-pointer flex flex-col h-[470px] border-primary/20 shadow-[0_0_25px_rgba(166,124,26,0.04)]"
+        className="group relative overflow-hidden rounded-[2rem] glass-card cursor-pointer flex flex-col h-full border-primary/20 shadow-[0_0_25px_rgba(166,124,26,0.04)]"
       >
         {/* Thumbnail Image Slider */}
         <div className="relative w-full h-[200px] overflow-hidden bg-surface-variant/30 border-b border-outline/30 z-10">
@@ -178,7 +178,7 @@ function ProjectCard({ project, index }) {
             </h3>
 
             {/* Description */}
-            <p className="text-xs text-on-surface-variant mb-4 line-clamp-3 leading-relaxed">
+            <p className="text-xs text-on-surface-variant mb-4 leading-relaxed">
               {project.description}
             </p>
           </div>
