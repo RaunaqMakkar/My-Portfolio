@@ -10,7 +10,7 @@ export const personalInfo = {
   linkedin: "https://www.linkedin.com/in/raunaq-makkar",
   github: "https://github.com/RaunaqMakkar",
   fiverr: "https://www.fiverr.com/s/jj9BW0V",
-  avatar: "My Professinal Photo.png",
+  avatar: "/profile-photo.png",
 };
 
 export const aboutData = {
