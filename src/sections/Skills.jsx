@@ -1,21 +1,28 @@
 import { skillsCategories } from "../data/portfolioData";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useStaggerReveal } from "../hooks/useStaggerReveal";
 
 export default function Skills() {
-  const [sectionRef, isVisible] = useScrollReveal();
+  const [headingRef, headingVisible] = useScrollReveal();
+  const { containerRef, getItemProps } = useStaggerReveal(
+    skillsCategories.length,
+    { staggerDelay: 120, threshold: 0.05 }
+  );
 
   return (
     <section id="skills" className="py-16 md:py-20 bg-surface/30 relative z-20">
       {/* Subtle background glow */}
       <div className="glow-orb w-[350px] h-[350px] bg-accent/5 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
 
-      <div
-        ref={sectionRef}
-        className={`max-w-[1200px] mx-auto px-6 md:px-12 relative z-10 transition-all duration-500 ${isVisible ? "opacity-100" : "opacity-0"
-          }`}
-      >
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12 relative z-10">
         {/* Section Heading */}
-        <div className="text-left mb-10 md:mb-12">
+        <div
+          ref={headingRef}
+          className={`text-left mb-10 md:mb-12 transition-all duration-700 ${headingVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-[30px]"
+            }`}
+        >
           <h2 className="font-display text-3xl md:text-4xl font-extrabold mb-3 text-on-surface">
             Skills & <span className="text-primary">Technologies</span>
           </h2>
@@ -25,19 +32,20 @@ export default function Skills() {
           </p>
         </div>
 
-        {/* Categories Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Categories Grid — staggered */}
+        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillsCategories.map((cat, index) => {
             const isAI = cat.title === "AI & Machine Learning";
+            const itemProps = getItemProps(index);
             return (
               <div
                 key={cat.title}
                 className={`glass-card p-6 md:p-8 rounded-2xl transition-all duration-300 hover:-translate-y-2 h-full flex flex-col hover:shadow-[0_20px_40px_rgba(42,27,16,0.08),_0_0_25px_rgba(166,124,26,0.08)] ${isAI
                     ? "border-primary/40 bg-surface/80 shadow-[0_0_20px_rgba(166,124,26,0.06)]"
                     : "border-outline/30"
-                  } ${isVisible ? "animate-fadeInUp opacity-100" : "opacity-0"
-                  }`}
-                style={{ animationDelay: `${index * 100}ms` }}
+                  } ${itemProps.className}`}
+                style={itemProps.style}
+                data-stagger-index={itemProps["data-stagger-index"]}
               >
                 {/* Header */}
                 <div className="flex items-center justify-between mb-5">

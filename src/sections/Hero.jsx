@@ -14,24 +14,6 @@ export default function Hero() {
   const [heroRef, heroVisible] = useScrollReveal({ threshold: 0.1 });
   const [roleIndex, setRoleIndex] = useState(0);
   const portraitRef = useRef(null);
-  const parallaxRef = useRef(null);
-  const [parallax, setParallax] = useState({ x: 0, y: 0 });
-
-  // Subtle parallax on mouse move
-  const handleMouseMove = useCallback((e) => {
-    if (!parallaxRef.current) return;
-    const rect = parallaxRef.current.getBoundingClientRect();
-    const cx = rect.left + rect.width / 2;
-    const cy = rect.top + rect.height / 2;
-    const dx = (e.clientX - cx) / rect.width;
-    const dy = (e.clientY - cy) / rect.height;
-    setParallax({ x: dx * 12, y: dy * 8 });
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("mousemove", handleMouseMove, { passive: true });
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [handleMouseMove]);
 
   // Vertical rolling title index loop
   useEffect(() => {
@@ -46,7 +28,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      ref={(el) => { heroRef.current = el; parallaxRef.current = el; }}
+      ref={heroRef}
       className="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden"
     >
       {/* Background Ambient Grid */}
@@ -55,29 +37,17 @@ export default function Hero() {
       {/* Subtle Grain Texture Overlay */}
       <div className="hero-grain absolute inset-0 z-[1] pointer-events-none" />
 
-      {/* Editorial Accent Elements — subtle parallax shapes */}
+      {/* Editorial Accent Elements */}
       <div
         className="absolute top-[12%] left-[8%] w-40 h-40 rounded-full opacity-[0.07] pointer-events-none z-[1]"
         style={{
           background: "radial-gradient(circle, var(--color-primary), transparent 70%)",
-          transform: `translate(${parallax.x * 1.5}px, ${parallax.y * 1.5}px)`,
-          transition: "transform 0.6s cubic-bezier(0.23,1,0.32,1)",
         }}
       />
       <div
         className="absolute bottom-[18%] right-[12%] w-56 h-56 rounded-full opacity-[0.05] pointer-events-none z-[1]"
         style={{
           background: "radial-gradient(circle, var(--color-accent), transparent 70%)",
-          transform: `translate(${parallax.x * -1}px, ${parallax.y * -1}px)`,
-          transition: "transform 0.6s cubic-bezier(0.23,1,0.32,1)",
-        }}
-      />
-      <div
-        className="absolute top-[55%] right-[35%] w-24 h-[1px] opacity-[0.12] pointer-events-none z-[1]"
-        style={{
-          background: "var(--color-primary)",
-          transform: `translateX(${parallax.x * 2}px) rotate(-15deg)`,
-          transition: "transform 0.8s cubic-bezier(0.23,1,0.32,1)",
         }}
       />
 
@@ -191,16 +161,16 @@ export default function Hero() {
         >
           <div
             ref={portraitRef}
-            className={`float-anim hero-img-container rounded-3xl ${personalInfo.avatar ? "" : "animated-gradient-border"
+            className={`hero-img-container rounded-3xl max-w-[420px] mx-auto ${personalInfo.avatar ? "" : "animated-gradient-border"
               }`}
           >
-            <div className={`w-full h-[460px] rounded-3xl flex flex-col items-center justify-center relative overflow-hidden ${personalInfo.avatar ? "bg-transparent" : "bg-surface-variant/30 border border-outline/30"
+            <div className={`w-full h-[420px] lg:h-[475px] rounded-3xl flex flex-col items-center justify-center relative overflow-hidden ${personalInfo.avatar ? "bg-transparent" : "bg-surface-variant/30 border border-outline/30"
               }`}>
               {personalInfo.avatar ? (
                 <img
                   src={personalInfo.avatar}
                   alt={personalInfo.name}
-                  className="h-full w-auto object-contain object-bottom scale-[1.5] origin-bottom"
+                  className="w-full h-full object-cover object-top"
                 />
               ) : (
                 <>

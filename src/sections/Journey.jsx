@@ -1,23 +1,34 @@
+import { useMemo } from "react";
 import { journeyData } from "../data/portfolioData";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useScrollProgress } from "../hooks/useScrollProgress";
 
-function TimelineItem({ item, index }) {
+function TimelineItem({ item, index, totalItems, scrollProgress }) {
   const [ref, isVisible] = useScrollReveal({ threshold: 0.1 });
+
+  // Each item "unlocks" earlier — divide by totalItems+1 to stagger faster
+  const itemThreshold = index / (totalItems + 2);
+  const isUnlocked = scrollProgress > itemThreshold;
+
+  // Dot fills in when the line reaches it
+  const dotActive = isUnlocked && isVisible;
 
   return (
     <div
       ref={ref}
-      className={`relative pl-6 md:pl-10 transition-all duration-700 ${isVisible
+      className={`relative pl-6 md:pl-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${isUnlocked && isVisible
         ? "opacity-100 translate-y-0"
         : "opacity-0 translate-y-[30px]"
         }`}
-      style={{ transitionDelay: `${index * 120}ms` }}
+      style={{ transitionDelay: `${isUnlocked ? 50 : 0}ms` }}
     >
-      {/* Circle Dot on the line */}
+      {/* Circle Dot on the line — animates when line reaches it */}
       <div
-        className={`absolute top-[6px] w-3.5 h-3.5 rounded-full border-2 bg-surface z-10 transition-all duration-300 ${item.highlight
-          ? "border-primary bg-primary"
-          : "border-primary/50"
+        className={`absolute top-[6px] w-3.5 h-3.5 rounded-full border-2 z-10 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${dotActive
+          ? item.highlight
+            ? "border-primary bg-primary scale-100 shadow-[0_0_12px_rgba(166,124,26,0.5)]"
+            : "border-primary bg-primary/60 scale-100"
+          : "border-primary/20 bg-surface scale-75 opacity-50"
           }`}
         style={{ left: "calc(var(--tl-axis) - var(--tl-pad) - 0.4375rem)" }}
       />
@@ -137,39 +148,76 @@ function TimelineCard({ item }) {
 }
 
 export default function Journey() {
-  const [sectionRef, isVisible] = useScrollReveal();
+  const [headingRef, headingVisible] = useScrollReveal();
+  const { containerRef, progress } = useScrollProgress({ offset: 0.65 });
+
+  // Clamp progress to ensure clean animation
+  const lineScale = useMemo(() => Math.min(Math.max(progress, 0), 1), [progress]);
 
   return (
     <section id="journey" className="py-16 md:py-20 bg-surface/30 relative z-20">
-      <div
-        ref={sectionRef}
-        className={`max-w-[1000px] mx-auto px-6 md:px-12 transition-all duration-800 ${isVisible
-          ? "animate-fadeInUp opacity-100 translate-y-0"
-          : "opacity-0 translate-y-[40px]"
-          }`}
-      >
-        {/* Title */}
-        <div className="text-left mb-12">
+      <div className="max-w-[1000px] mx-auto px-6 md:px-12">
+        {/* Title — independent reveal */}
+        <div
+          ref={headingRef}
+          className={`text-left mb-12 transition-all duration-700 ${headingVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-[30px]"
+            }`}
+        >
           <h2 className="font-display text-3xl md:text-4xl font-extrabold text-on-surface">
             My <span className="text-primary">Journey</span>
           </h2>
         </div>
 
-        {/* Timeline container */}
-        <div className="relative mt-12 pl-8 md:pl-12" style={{ "--tl-axis": "8px", "--tl-pad": "2rem" }}>
-          {/* Vertical line on the left */}
+        {/* Timeline container — scroll-linked */}
+        <div
+          ref={containerRef}
+          className="relative mt-12 pl-8 md:pl-12"
+          style={{ "--tl-axis": "8px", "--tl-pad": "2rem" }}
+        >
+          {/* Self-Drawing Vertical Line */}
           <div
             className="absolute top-0 bottom-0 w-[2px]"
-            style={{
-              left: "calc(var(--tl-axis) - 1px)",
-              background:
-                "linear-gradient(to bottom, rgba(166,124,26,0.03) 0%, rgba(166,124,26,0.3) 10%, rgba(166,124,26,0.3) 90%, rgba(166,124,26,0.03) 100%)",
-            }}
-          />
+            style={{ left: "calc(var(--tl-axis) - 1px)" }}
+          >
+            {/* Background track (always visible, very faint) */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(166,124,26,0.05) 0%, rgba(166,124,26,0.08) 50%, rgba(166,124,26,0.05) 100%)",
+              }}
+            />
+            {/* Animated drawn line */}
+            <div
+              className="absolute inset-0 timeline-line-drawing"
+              style={{
+                background:
+                  "linear-gradient(to bottom, rgba(166,124,26,0.1) 0%, rgba(166,124,26,0.4) 15%, rgba(166,124,26,0.4) 85%, rgba(166,124,26,0.1) 100%)",
+                transform: `scaleY(${lineScale})`,
+              }}
+            />
+            {/* Glow trail behind the drawn line */}
+            <div
+              className="absolute inset-0 timeline-line-glow"
+              style={{
+                background:
+                  "linear-gradient(to bottom, transparent 0%, rgba(166,124,26,0.3) 50%, transparent 100%)",
+                transform: `scaleY(${lineScale})`,
+              }}
+            />
+          </div>
 
           <div className="space-y-12">
             {journeyData.map((item, index) => (
-              <TimelineItem key={index} item={item} index={index} />
+              <TimelineItem
+                key={index}
+                item={item}
+                index={index}
+                totalItems={journeyData.length}
+                scrollProgress={lineScale}
+              />
             ))}
           </div>
         </div>

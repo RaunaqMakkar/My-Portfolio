@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { projectsData } from "../data/portfolioData";
 import { useScrollReveal } from "../hooks/useScrollReveal";
+import { useStaggerReveal } from "../hooks/useStaggerReveal";
 
 /* Themed gradient + icon mappings for each project */
 const projectThemes = {
@@ -130,9 +131,7 @@ function ImageSlider({ images, title }) {
   );
 }
 
-function ProjectCard({ project, index }) {
-  const [cardRef, isVisible] = useScrollReveal({ threshold: 0.1 });
-
+function ProjectCard({ project, index, staggerProps }) {
   const theme = projectThemes[project.title] || {
     icon: "terminal",
     accent: "rgba(16, 186, 129, 0.3)",
@@ -140,12 +139,9 @@ function ProjectCard({ project, index }) {
 
   return (
     <div
-      ref={cardRef}
-      className={`h-full transition-all duration-700 ${isVisible
-        ? "animate-fadeInUp opacity-100 translate-y-0"
-        : "opacity-0 translate-y-[40px]"
-        }`}
-      style={{ animationDelay: `${index * 150}ms` }}
+      className={`h-full ${staggerProps.className}`}
+      style={staggerProps.style}
+      data-stagger-index={staggerProps["data-stagger-index"]}
     >
       <div
         className="group relative overflow-hidden rounded-[2rem] glass-card cursor-pointer flex flex-col h-full border-primary/20 shadow-[0_0_25px_rgba(166,124,26,0.04)]"
@@ -232,18 +228,22 @@ function ProjectCard({ project, index }) {
 }
 
 export default function Projects() {
-  const [sectionRef, isVisible] = useScrollReveal();
+  const [headingRef, headingVisible] = useScrollReveal();
+  const { containerRef, getItemProps } = useStaggerReveal(
+    projectsData.length,
+    { staggerDelay: 150, threshold: 0.05 }
+  );
 
   return (
     <section id="portfolio" className="py-16 md:py-20 relative z-20">
-      <div
-        ref={sectionRef}
-        className={`max-w-[1200px] mx-auto px-6 md:px-12 transition-all duration-800 ${isVisible
-          ? "animate-fadeInUp opacity-100 translate-y-0"
-          : "opacity-0 translate-y-[40px]"
-          }`}
-      >
-        <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-6">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-12">
+        <div
+          ref={headingRef}
+          className={`flex flex-col md:flex-row justify-between items-end mb-10 gap-6 transition-all duration-700 ${headingVisible
+            ? "opacity-100 translate-y-0"
+            : "opacity-0 translate-y-[30px]"
+            }`}
+        >
           <div>
             <h2 className="font-display text-4xl md:text-5xl font-bold gradient-text mb-2">
               Projects
@@ -259,9 +259,9 @@ export default function Projects() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projectsData.map((project, i) => (
-            <ProjectCard key={project.id} project={project} index={i} />
+            <ProjectCard key={project.id} project={project} index={i} staggerProps={getItemProps(i)} />
           ))}
         </div>
       </div>
