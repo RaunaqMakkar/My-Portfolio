@@ -239,7 +239,7 @@ export default function Projects() {
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <div
           ref={headingRef}
-          className={`flex flex-col md:flex-row justify-between items-end mb-10 gap-6 transition-all duration-700 ${headingVisible
+          className={`flex flex-col md:flex-row justify-between items-start md:items-end mb-10 gap-6 transition-all duration-700 ${headingVisible
             ? "opacity-100 translate-y-0"
             : "opacity-0 translate-y-[30px]"
             }`}
@@ -259,7 +259,7 @@ export default function Projects() {
           </p>
         </div>
 
-        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div ref={containerRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
           {projectsData.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} staggerProps={getItemProps(i)} />
           ))}

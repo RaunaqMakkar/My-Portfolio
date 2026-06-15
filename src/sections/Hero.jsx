@@ -29,7 +29,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={heroRef}
-      className="min-h-screen flex items-center pt-24 pb-16 relative overflow-hidden"
+      className="min-h-0 lg:min-h-screen flex items-center pt-28 pb-16 md:pt-32 md:pb-20 lg:pt-24 lg:pb-16 relative overflow-hidden"
     >
       {/* Background Ambient Grid */}
       <div className="absolute inset-0 bg-grid z-0 pointer-events-none" />

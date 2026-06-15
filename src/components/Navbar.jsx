@@ -5,10 +5,18 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
+  const [pastHero, setPastHero] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      // Check if we've scrolled past the hero section
+      const heroEl = document.getElementById("hero");
+      if (heroEl) {
+        const heroBottom = heroEl.getBoundingClientRect().bottom;
+        setPastHero(heroBottom < 80); // 80px threshold (navbar height)
+      }
 
       // Active section calculation
       const sections = navLinks.map(link => link.href.substring(1));
@@ -38,6 +46,14 @@ export default function Navbar() {
         }`}
     >
       <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex justify-between md:justify-center items-center">
+        {/* Mobile: Name shown after scrolling past hero */}
+        <div className={`md:hidden flex items-center transition-all duration-500 ${pastHero ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3 pointer-events-none"}`}>
+          <a href="#hero" className="flex flex-col leading-none">
+            <span className="text-sm font-bold text-on-surface tracking-tight">Raunaq</span>
+            <span className="text-xs font-semibold text-primary tracking-widest uppercase">Makkar</span>
+          </a>
+        </div>
+
         {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center gap-10 text-xs font-bold tracking-widest uppercase">
           {navLinks.map((link) => {
@@ -95,3 +111,4 @@ export default function Navbar() {
     </nav>
   );
 }
+
