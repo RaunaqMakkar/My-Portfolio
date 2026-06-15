@@ -48,9 +48,8 @@ export default function Navbar() {
       <div className="max-w-[1200px] mx-auto px-6 md:px-12 flex justify-between md:justify-center items-center">
         {/* Mobile: Name shown after scrolling past hero */}
         <div className={`md:hidden flex items-center transition-all duration-500 ${pastHero ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-3 pointer-events-none"}`}>
-          <a href="#hero" className="flex flex-col leading-none">
-            <span className="text-sm font-bold text-on-surface tracking-tight">Raunaq</span>
-            <span className="text-xs font-semibold text-primary tracking-widest uppercase">Makkar</span>
+          <a href="#hero" className="text-sm font-bold text-on-surface tracking-tight">
+            Raunaq Makkar
           </a>
         </div>
 
