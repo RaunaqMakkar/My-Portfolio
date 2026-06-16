@@ -1,16 +1,50 @@
-# React + Vite
+# Premium Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive, high-performance developer portfolio website built with React and Vite. It features a modern dark-mode aesthetic with glassmorphism effects, a custom scroll-reveal system, interactive timeline components, and optimized mobile layouts.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Modern Glassmorphic UI**: Sleek, transparent components with glowing accents and smooth micro-animations.
+- **Scroll-Linked Animations**: Custom intersection observer hooks and scroll progress indicators.
+- **Responsive Architecture**: Optimized for smartphones, tablets, laptops, and larger screens.
+- **Dynamic Projects Showcase**: Left-aligned, grid-based layout for mobile screens and interactive card expansion/links.
+- **Timeline Journey**: A visual, self-drawing timeline component detailing education and professional experience.
+- **Performance Optimized**: Built on Vite with fast build times and asset pathing for reliable hosting (e.g., Vercel, Netlify).
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: React.js
+- **Bundler**: Vite
+- **Styling**: Tailwind CSS & CSS Variables
+- **Icons**: Material Symbols
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+
+- Node.js (v18 or higher recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Development
+
+Run the local development server:
+```bash
+npm run dev
+```
+
+### Production Build
+
+Build the production bundle:
+```bash
+npm run build
+```
+
+The output assets will be generated in the `dist/` directory, ready to be deployed to Vercel, Netlify, or any static hosting service.
