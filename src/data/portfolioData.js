@@ -199,7 +199,7 @@ export const journeyData = [
     title: "Bachelor of Technology (B.Tech)",
     subtitle: "Manipal University Jaipur",
     description:
-      "Pursued Computer and Communication Engineering while building AI, Machine Learning, Computer Vision, and Web Development projects focused on solving real-world challenges.",
+      "Pursued <span class=\"text-primary font-bold\">Computer and Communication Engineering</span> while building AI, Machine Learning, Computer Vision, and Web Development projects focused on solving real-world challenges.",
     button: null,
     highlight: true,
     side: "right",

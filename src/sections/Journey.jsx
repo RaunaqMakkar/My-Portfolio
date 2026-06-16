@@ -68,9 +68,10 @@ function TimelineCard({ item }) {
                 {item.subtitle}
               </p>
             )}
-            <p className="text-xs md:text-sm text-on-surface-variant leading-relaxed">
-              {item.description}
-            </p>
+            <p 
+              className="text-xs md:text-sm text-on-surface-variant leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: item.description }}
+            />
           </div>
 
           {/* Right Side: Milestones */}
@@ -115,9 +116,10 @@ function TimelineCard({ item }) {
               {item.subtitle}
             </p>
           )}
-          <p className="text-xs md:text-sm text-on-surface-variant leading-relaxed">
-            {item.description}
-          </p>
+          <p 
+            className="text-xs md:text-sm text-on-surface-variant leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: item.description }}
+          />
           {item.tags && item.tags.length > 0 && (
             <div className="flex flex-wrap gap-1.5 pt-1">
               {item.tags.map((tag) => (
