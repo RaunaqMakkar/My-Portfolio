@@ -68,7 +68,7 @@ function TimelineCard({ item }) {
                 {item.subtitle}
               </p>
             )}
-            <p 
+            <p
               className="text-xs md:text-sm text-on-surface-variant leading-relaxed"
               dangerouslySetInnerHTML={{ __html: item.description }}
             />
@@ -116,7 +116,7 @@ function TimelineCard({ item }) {
               {item.subtitle}
             </p>
           )}
-          <p 
+          <p
             className="text-xs md:text-sm text-on-surface-variant leading-relaxed"
             dangerouslySetInnerHTML={{ __html: item.description }}
           />
